@@ -1,17 +1,7 @@
-# React `use c`
+# React `use php`
 
-Use C in your React! (Or if you prefer [Rust](https://github.com/elnardu/react-use-rust))
+Use PHP in your React!
 
-<img width="590" alt="image" src="https://github.com/elnardu/react-use-c/assets/8999001/495c39d6-3fb1-437d-9af0-03020c215159">
+From https://github.com/elnardu/react-use-c
 
-https://github.com/elnardu/react-use-c/assets/8999001/24a433d9-af89-4962-a0a1-ba6533092d0b
-
-## TODO
-
-- [ ] Add more folders and files with code that does nothing to look more professional
-- [ ] Create `create-react-use-c` package cuz this ecosystem is broken
-- [ ] Add typescript support
-- [ ] Make somebody else figure out publishing this to npm (I am still not over it)
-- [ ] Remove typescript support
-- [ ] Tell windows ppl to just use WSL
-- [ ] esbuild is not cursed enough, gotta switch to something else
+[Gravação de tela de 29-10-2023 12:53:48.webm](https://github.com/criskell/react-use-php/assets/96352451/72ba0096-6d24-40e2-aec1-df2854042ebf)
