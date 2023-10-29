@@ -20,7 +20,7 @@ ${strings[0]}
   return randomClassId;
 }
 
-async function runC(code) {
+async function runPhp(code) {
   const res = await fetch("/rpc/rce", {
     method: "POST",
     body: JSON.stringify({ code: code }),
@@ -39,30 +39,28 @@ const appStyles = css`
 
 const App = () => (
   <div className={appStyles}>
-    <h1>React use C demo</h1>
+    <h1>React use PHP demo</h1>
     <Demo />
   </div>
 );
 
 const Demo = () => {
   const [output, setOutput] = useState(null);
-  const cHelloWorld = async () => {
-    "use c";
-    #include <stdio.h>
-    int main() {
-      printf("Hello from C!\n");
-      return 0;
-    }
+  const phpHelloWorld = async () => {
+    "use php";
+
+    <?php
+    echo "Hello from PHP!\n";
   };
   const onClick = async () => {
-    const out = await cHelloWorld();
+    const out = await phpHelloWorld();
     setOutput(out.stdout);
   };
 
   return (
     <div>
-      <button onClick={onClick}>Run C code!</button>
-      <p>Output from C:</p>
+      <button onClick={onClick}>Run PHP code!</button>
+      <p>Output from PHP:</p>
       <pre>{ output }</pre>
     </div>
   );

@@ -1,7 +1,6 @@
 const esbuild = require("esbuild");
 const fs = require("fs/promises");
 const fsButWihtoutPromises = require("fs");
-const path = require("path");
 
 function findClosingBrace(string) {
   let c = 0;
@@ -17,29 +16,29 @@ function findClosingBrace(string) {
   return null;
 }
 
-function transformToUseC(args) {
+function transformToUsePhp(args) {
   const content = fsButWihtoutPromises.readFileSync(args.path, "utf8");
-  const splits = content.split(/["']use c["'];/);
+  const splits = content.split(/["']use php["'];/);
   let result = splits[0];
   for (let i = 1; i < splits.length; i++) {
-    const endOfCCode = findClosingBrace(splits[i]);
-    const cCode = splits[i].slice(0, endOfCCode);
-    result += `return runC("${encodeURIComponent(cCode)}");`;
-    result += splits[i].slice(endOfCCode, splits[i].length);
+    const endOfPhpCode = findClosingBrace(splits[i]);
+    const phpCode = splits[i].slice(0, endOfPhpCode);
+    result += `return runPhp("${encodeURIComponent(phpCode)}");`;
+    result += splits[i].slice(endOfPhpCode, splits[i].length);
   }
   return result;
 }
 
-const useCPlugin = {
-  name: "use-c",
+const usePhpPlugin = {
+  name: "use-php",
   setup(build) {
     build.onLoad({ filter: /.js$/ }, (args) => ({
-      contents: transformToUseC(args),
+      contents: transformToUsePhp(args),
       loader: "js",
     }));
 
     build.onLoad({ filter: /.jsx$/ }, (args) => ({
-      contents: transformToUseC(args),
+      contents: transformToUsePhp(args),
       loader: "jsx",
     }));
   },
@@ -64,7 +63,7 @@ async function build() {
     minify: true,
     bundle: true,
     sourcemap: true,
-    plugins: [useCPlugin],
+    plugins: [usePhpPlugin],
   });
 
   await fs.cp("index.html", "dist/index.html");

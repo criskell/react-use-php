@@ -1,7 +1,7 @@
 {
-  "name": "react-use-c",
+  "name": "react-use-php",
   "version": "1.0.0",
-  "description": "Use C in your server side react components",
+  "description": "Use PHP in your server side react components",
   "main": "this field is so weird",
   "scripts": {
     "start": "npm run build && node server.js",
@@ -11,29 +11,24 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/elnardu/react-use-c.git"
+    "url": "git+https://github.com/criskell/react-use-php.git"
   },
   "keywords": [
-    "C",
-    "Rust",
-    "React",
     "Typescript",
-    "Bun",
-    "Zig"
+    "PHP"
   ],
   "author": "me",
   "license": "WTFPL",
   "bugs": {
-    "url": "https://github.com/elnardu/react-use-c/issues"
+    "url": "https://github.com/criskell/react-use-php/issues"
   },
-  "homepage": "https://github.com/elnardu/react-use-c#readme",
+  "homepage": "https://github.com/criskell/react-use-php#readme",
   "devDependencies": {
     "esbuild": "0.19.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "dependencies": {
-    "express": "^4.18.2",
-    "@oven/zig": "0.12.0-dev.1286"
+    "express": "^4.18.2"
   }
 }

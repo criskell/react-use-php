@@ -11,8 +11,6 @@ const port = process.env.PORT ?? 3000;
 app.use(express.static("dist"));
 app.use(express.json());
 
-const zigPath = "node_modules/@oven/zig/zig";
-
 function spawn(command, args) {
   return new Promise((resolve) => {
     // damn this api is shit
@@ -40,26 +38,24 @@ function spawn(command, args) {
 
 function maketmp() {
   return new Promise((resolve, reject) => {
-    fs.mkdtemp(path.join(os.tmpdir(), "use-c"), (err, dir) => {
+    fs.mkdtemp(path.join(os.tmpdir(), "use-php"), (err, dir) => {
       if (err !== null) reject(err);
       else resolve(dir);
     });
   });
 }
 
-async function runC(code) {
+async function runPhp(code) {
   const dir = await maketmp();
-  const cFile = path.join(dir, "main.c");
-  const outFile = path.join(dir, "main");
-  await fsPromises.writeFile(cFile, decodeURIComponent(code));
-  await spawn(zigPath, ["cc", cFile, "-o", outFile]);
-  const out = await spawn(outFile, []);
+  const phpFile = path.join(dir, "main.php");
+  await fsPromises.writeFile(phpFile, decodeURIComponent(code));
+  const out = await spawn("php", [phpFile]);
   return out;
 }
 
 app.post("/rpc/rce", async (req, res) => {
   const { code } = req.body;
-  const out = await runC(code);
+  const out = await runPhp(code);
   res.json(out);
 });
 
